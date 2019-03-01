@@ -12,7 +12,7 @@ void Add();
 void Edit();
 void Display();
 void Delete();
-void search();
+void Search();
 
 struct Inventory
 {
@@ -133,10 +133,10 @@ cout<<"Password: "<<pass1<<endl;
             Edit(); 
             break; //Edit Record
         case 4:
-            bura();
+            Delete();
             break;   //Delete record
         case 5:
-        	search(); 
+        	Search(); 
         	break;   //Search record
 
         default:
@@ -194,10 +194,11 @@ void Display()
     fout.open("Records.txt", ios::in);
     Inventory inv;
     fout.read(reinterpret_cast <char*> (&inv), sizeof(inv));
-    while (!fout.eof())
-    {
-
-        cout << "\nName\t: ";
+    while (true)
+  	{
+    	if (!fout.good()) break;
+    	cout<<"******* INFO *******"<<endl;
+    	cout << "\nName\t: ";
         cout << inv.fname,inv.lname,inv.mname;
         cout << "\nAge: ";
         cout << inv.age;
@@ -206,14 +207,15 @@ void Display()
         cout <<"Username: "<<inv.fname[0]<<inv.fname[1]<<inv.fname[2]<<inv.lname[2]<<inv.lname[1]<<inv.lname[0]<<endl;
         cout<<"Password: "<<inv.password<<endl;
         cout<<endl;
-        cout<<"*******WELCOME*******"<<endl;
+        cout<<"******* WELCOME *******"<<endl;
         cout <<"Username: "<<inv.fname[0]<<inv.fname[1]<<inv.fname[2]<<inv.lname[2]<<inv.lname[1]<<inv.lname[0]<<endl;
         cout<<"Password: "<<inv.password<<endl;
+        cout<<"******* END OF RECORD *******"<<endl;
         fout.read(reinterpret_cast <char*> (&inv), sizeof(inv));
-        
-    }
-//close the file
+	}
+	//close the file
     fout.close();
+
 }
 void Edit()
 {
@@ -254,36 +256,36 @@ void Edit()
 	switch (inv.lname[50])
      {
      	case 'A':
-     cout<<"What do you want to update?"<<endl;	
-     cin>>x;
-     cout<<"\nYour updated into:"<<endl;
-     cout <<"Username: "<<inv.fname[0]<<inv.fname[1]<<inv.fname[2]<<inv.lname[2]<<inv.lname[1]<<inv.lname[0]<<endl;
-     cout<<"Password: "<<inv.password<<endl;
-     fout.read(reinterpret_cast <char*> (&inv), sizeof(inv));
+		cout<<"What do you want to update?"<<endl;	
+		cin>>x;
+		cout<<"\nYour updated into:"<<endl;
+		cout <<"Username: "<<inv.fname[0]<<inv.fname[1]<<inv.fname[2]<<inv.lname[2]<<inv.lname[1]<<inv.lname[0]<<endl;
+		cout<<"Password: "<<inv.password<<endl;
+		fout.read(reinterpret_cast <char*> (&inv), sizeof(inv));
      	break;
      	
      	case 'B':
-     	cout<<"Drop the name you want to update"<<endl;
-     	cin>>y;	
-     	 cout<<"\nYour name is updated into:"<<endl;
-     	cout <<"Username: "<<inv.fname[0]<<inv.fname[1]<<inv.fname[2]<<inv.lname[2]<<inv.lname[1]<<inv.lname[0]<<endl;
-        cout<<"Password: "<<inv.password<<endl;
-        fout.read(reinterpret_cast <char*> (&inv), sizeof(inv));
+		cout<<"Drop the name you want to update"<<endl;
+		cin>>y;	
+		cout<<"\nYour name is updated into:"<<endl;
+		cout <<"Username: "<<inv.fname[0]<<inv.fname[1]<<inv.fname[2]<<inv.lname[2]<<inv.lname[1]<<inv.lname[0]<<endl;
+		cout<<"Password: "<<inv.password<<endl;
+		fout.read(reinterpret_cast <char*> (&inv), sizeof(inv));
      	break;
      	
      	case 'C':
-     cout<<"Drop the name you want to update"<<endl;
- 	 cin>>z;	
- 	cout<<"\nYour name is updated into:"<<endl;
- 	cout <<"Username: "<<inv.fname[0]<<inv.fname[1]<<inv.fname[2]<<inv.lname[2]<<inv.lname[1]<<inv.lname[0]<<endl;
-    cout<<"Password: "<<inv.password<<endl;
-    fout.read(reinterpret_cast <char*> (&inv), sizeof(inv));
+		cout<<"Drop the name you want to update"<<endl;
+		cin>>z;	
+		cout<<"\nYour name is updated into:"<<endl;
+		cout <<"Username: "<<inv.fname[0]<<inv.fname[1]<<inv.fname[2]<<inv.lname[2]<<inv.lname[1]<<inv.lname[0]<<endl;
+		cout<<"Password: "<<inv.password<<endl;
+		fout.read(reinterpret_cast <char*> (&inv), sizeof(inv));
  	break;
  	
  	default:
             cout << "Invalid Selection" << endl;
 
-//write record to file
+	//write record to file
         fout.write(reinterpret_cast<char*>(&inv), sizeof(inv));
         cout << "Do you want to edit record? " << endl;
         cin >> inv.tama;
@@ -302,7 +304,7 @@ void Delete()
 {
 	
 }
-void search()
+void Search()
 {
 	
 }
